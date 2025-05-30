@@ -80,10 +80,12 @@ dec_volume() {
 }
 
 toggle_mute() {
+    desc=$(get_default_sink_description)
+
 	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m && notify-send -a "system-script" -e  -u low -i "$iDIR/volume-mute.png" " Mute"
+		pamixer -m && notify-send -a "system-script" -e  -u low -i "$iDIR/volume-mute.png" "Volume Level:" " Switched OFF ($desc)"
 	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u && notify-send -a "system-script" -e  -u low -i "$(get_icon)" " Volume:" " Switched ON"
+		pamixer -u && notify-send -a "system-script" -e  -u low -i "$(get_icon)" " Volume Level:" " Switched ON ($desc)"
 	fi
 }
 

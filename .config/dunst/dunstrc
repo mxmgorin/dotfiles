@@ -20,12 +20,12 @@
     follow = mouse
 
 
-    width = 300
+    width = 360
     # height = 300
     # Position the notification in the top right corner
     origin = top-right
     # Offset from the origin
-    offset = (10, 50)
+    offset = (50, 25)
 
     # Turn on the progess bar
     progress_bar = true
@@ -41,7 +41,7 @@
     progress_bar_min_width = 150
 
     # Set the maximum width for the progress bar
-    progress_bar_max_width = 300
+    progress_bar_max_width = 360
 
 
     # Show how many messages are currently hidden (because of geometry).
