@@ -1,0 +1,266 @@
+{
+  "layer": "top",
+  //"height": 32,
+  "spacing": 4,
+  "margin-top": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+
+  "fixed-center": true,
+  "modules-left": ["niri/workspaces", "custom/separator", "wlr/taskbar"],
+  "modules-center": ["niri/window"],
+  "modules-right": [
+    "custom/vpn",
+    //"custom/separator",
+    "network",
+    //"custom/separator",
+    "bluetooth",
+    //"custom/separator",
+    "backlight",
+    //"custom/separator",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    //"custom/separator",
+    "memory",
+    //"custom/separator",
+    "cpu",
+    //"custom/separator",
+    "temperature",
+    //"custom/separator",
+    "power-profiles-daemon",
+    //"custom/separator",
+    "battery",
+    //"custom/separator",
+    "niri/language",
+    //"custom/separator",
+    "clock",
+    //"custom/separator",
+    "custom/exit"
+  ],
+  "custom/separator_space": {
+    "format": "  ",
+    "tooltip": false,
+  },
+  "custom/separator": {
+    "format": " | ",
+    "tooltip": false,
+  },
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 40,
+    "separate-outputs": true,
+    "icon": true,
+    "icon-size": 14
+  },
+  "niri/workspaces": {
+    "format": "{}",
+    "format-icons": {
+      "1browser": "  ",
+      "1code": "  ",
+      "1terminal": "  ",
+      "1media": "  ",
+      "1chat": "  ",
+      "active": " ",
+      "default": " "
+    }
+  },
+  "tray": {
+    "spacing": 6
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%b %d %Y}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "cpu": {
+    "interval": 10,
+    "format": "   {}%",
+    "on-click": "alacritty --title waybar_btop -e btop"
+  },
+  "memory": {
+    "interval": 30,
+    "format": "   {}%",
+    "on-click": "alacritty --title waybar_btop -e btop"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "on-click": "~/.config/scripts/show-powerprofiles-menu.sh",
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "backlight": {
+    "format": "{icon}  {percent: >3}%",
+    "format-icons": [
+      "",
+      //"",
+      "",
+      //"",
+      "",
+      //"",
+      "",
+      "",
+      "",
+      //"",
+      "",
+      //"",
+      "",
+      //"",
+      ""
+    ],
+    "tooltip-format": "Backlight: {percent: >3}%",
+    "on-scroll-down": "$HOME/.config/scripts/change-brightness.sh -10",
+    "on-scroll-up": "$HOME/.config/scripts/change-brightness.sh +10"
+  },
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{icon} {volume: >3}%",
+    "format-bluetooth": "{icon} {volume: >3}%",
+    "format-muted":" muted",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click": "pkill pavucontrol || pavucontrol",
+    "on-scroll-up": "$HOME/.config/scripts/volume.sh --inc",
+    "on-scroll-down": "$HOME/.config/scripts/volume.sh --dec",
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity: >3}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+    "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
+    "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󱘖 </span>",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "<span size='13000' foreground='#f5e0dc'> </span>",
+    "tooltip-format-wifi": "{essid}: {signalStrength}%",
+    "tooltip-format-ethernet": "{bandwidthDownBytes:>} {bandwidthUpBytes:>}  ",
+    "on-click": "alacritty --title waybar_nmtui -e nmtui ", //"footclient -T waybar_nmtui -e nmtui",
+  },
+  "bluetooth": {
+	// "controller": "controller1", // specify the alias of the controller if there are more than 1 on the system
+	"format": "",
+	"format-disabled": "󰂲", // an empty format will hide the module
+	"format-connected": "󰂱 {num_connections} connected",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "pkill blueman-manager || blueman-manager",
+  },
+  "niri/language": {
+	"format": "{short}",
+	"tooltip-format": "{long}",
+	//"format-us": "US1"
+	//"format-ru": "As bayrakları"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format-critical": "  {temperatureC}°C",
+    "format": " {temperatureC}°C",
+  },
+
+  "custom/chatgpt": {
+    "format": " AI ",
+    "on-click": "brave --new-window https://chat.openai.com",
+    "tooltip-format": "AI Support"
+  },
+
+  "custom/youtube": {
+    "format": "  ",
+    "on-click": "brave --new-window https://youtube.com",
+    "tooltip-format": "AI Support"
+  },
+
+  "custom/calculator": {
+    "format": "",
+    "on-click": "qalculate-gtk",
+    "tooltip-format": "Open calculator"
+  },
+
+  "custom/exit": {
+    "format": "  ",
+    "on-click": "wlogout",
+    "tooltip": false
+  },
+  "custom/vpn": {
+    "exec": "~/.config/scripts/vpn-status.sh",
+    "interval": 3,
+    "on-click": "/usr/local/sbin/AmneziaVPN",
+    "return-type": "json"
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "Numix-Circle",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "sort-by-app-id": true,
+    "ignore-list": [
+    ],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+        "Firefox Web Browser": "Firefox",
+        "Foot Server": "Terminal"
+    }
+  },
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "custom/vpn",
+      ]
+  },
+
+  "custom/playerctl": {
+	"format": "<span>{}</span>",
+	"return-type": "json",
+	"max-length": 25,
+	"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+	"on-click-middle": "playerctl play-pause",
+	"on-click": "playerctl previous",
+	"on-click-right": "playerctl next",
+	"scroll-step": 5.0,
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"smooth-scrolling-threshold": 1,
+  },
+
+  "custom/browser": {
+	"format": " ",
+	"on-click": "xdg-open https://",
+	"tooltip": true,
+	"tooltip-format": "Launch Browser",
+  },
+
+  "pulseaudio#microphone": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": "",
+	"on-click": "$HOME/.config/scripts/volume.sh --toggle-mic",
+	"on-click-right": "pavucontrol -t 4",
+	"on-scroll-up": "$HOME/.config/scripts/volume.sh --mic-inc",
+	"on-scroll-down": "$HOME/.config/scripts/volume.sh --mic-dec",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+	"scroll-step": 5,
+  },
+}
