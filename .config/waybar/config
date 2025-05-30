@@ -118,6 +118,7 @@
     "on-scroll-down": "$HOME/.config/scripts/change-brightness.sh -10",
     "on-scroll-up": "$HOME/.config/scripts/change-brightness.sh +10"
   },
+
   "pulseaudio": {
     "scroll-step": 5,
     "format": "{icon} {volume: >3}%",
@@ -132,10 +133,26 @@
       "car": "",
       "default": ["", ""]
     },
-    "on-click": "pkill pavucontrol || pavucontrol",
+    "on-click-middle": "$HOME/.config/scripts/volume.sh --toggle",
+    "on-click": "$HOME/.config/scripts/next-audio-sink.sh",
+    "on-click-right": "pkill pavucontrol || pavucontrol -t 3",
     "on-scroll-up": "$HOME/.config/scripts/volume.sh --inc",
     "on-scroll-down": "$HOME/.config/scripts/volume.sh --dec",
   },
+
+  "pulseaudio#microphone": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": "",
+	"on-click": "$HOME/.config/scripts/next-audio-source.sh",
+	"on-click-middle": "$HOME/.config/scripts/volume.sh --toggle-mic",
+	"on-click-right": "pkill pavucontrol || pavucontrol -t 4",
+	"on-scroll-up": "$HOME/.config/scripts/volume.sh --mic-inc",
+	"on-scroll-down": "$HOME/.config/scripts/volume.sh --mic-dec",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+	"scroll-step": 5,
+  },
+
   "battery": {
     "states": {
       "warning": 30,
@@ -144,6 +161,7 @@
     "format": "{capacity: >3}% {icon}",
     "format-icons": ["", "", "", "", ""]
   },
+
   "network": {
     "format-wifi": "<span size='13000' foreground='#f5e0dc'> </span>",
     "format-ethernet": "<span size='13000' foreground='#f5e0dc'>󱘖 </span>",
@@ -250,17 +268,5 @@
 	"on-click": "xdg-open https://",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
-  },
-
-  "pulseaudio#microphone": {
-	"format": "{format_source}",
-	"format-source": " {volume}%",
-	"format-source-muted": "",
-	"on-click": "$HOME/.config/scripts/volume.sh --toggle-mic",
-	"on-click-right": "pavucontrol -t 4",
-	"on-scroll-up": "$HOME/.config/scripts/volume.sh --mic-inc",
-	"on-scroll-down": "$HOME/.config/scripts/volume.sh --mic-dec",
-	"tooltip-format": "{source_desc} | {source_volume}%",
-	"scroll-step": 5,
   },
 }

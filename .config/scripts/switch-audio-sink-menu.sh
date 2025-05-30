@@ -28,5 +28,5 @@ if [[ -n "$selected" ]]; then
         pactl move-sink-input "$input" "$sink_index"
     done
 
-    notify-send -u "low" -e -a "system-script" "Audio" "Output switched to: $selected"
+    notify-send -u "low" -e -a "system-script" "Audio" "Sink switched to: $selected"
 fi
