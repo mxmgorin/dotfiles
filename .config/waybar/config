@@ -75,7 +75,7 @@
   },
   "cpu": {
     "interval": 10,
-    "format": "   {}%",
+    "format": "   {usage}%",
     "on-click": "alacritty --title waybar_btop -e btop"
   },
   "memory": {
