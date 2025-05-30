@@ -73,7 +73,15 @@
   min-width: 20px;
 }
 
+#custom-vpn.disconnected {
+  color: @base0F;
+}
+
 #pulseaudio.muted {
+  color: @base0F;
+}
+
+#pulseaudio.source-muted {
   color: @base0F;
 }
 
