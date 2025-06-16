@@ -8,7 +8,7 @@
   "margin-left": 0,
   "fixed-center": true,
 
-  "modules-left": ["niri/workspaces", "custom/separator", "wlr/taskbar"],
+  "modules-left": ["niri/workspaces", "custom/separator", "custom/apps", "wlr/taskbar"],
   "modules-center": ["niri/window"],
   "modules-right": [
     "custom/vpn",
@@ -17,9 +17,9 @@
     "backlight",
     "pulseaudio",
     "pulseaudio#microphone",
-    "memory",
-    "cpu",
     "temperature",
+    "cpu",
+    "memory",
     "power-profiles-daemon",
     "battery",
     "niri/language",
@@ -63,8 +63,9 @@
   },
 
   "clock": {
-    "format": "{:%H:%M}",
-    "format-alt": "{:%b %d %Y}",
+    //"format": "{:%H:%M}",
+    "format": "{:%b %d  %H:%M}",
+    //"format-alt": "{:%b %d %Y}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
   },
 
@@ -264,5 +265,12 @@
 	"on-click": "xdg-open https://",
 	"tooltip": true,
 	"tooltip-format": "Launch Browser",
+  },
+
+  "custom/apps": {
+	"format": " 󱗼 ",
+	"on-click": "pkill fuzzel || fuzzel",
+	"tooltip": true,
+	"tooltip-format": "Apps drawer",
   },
 }
