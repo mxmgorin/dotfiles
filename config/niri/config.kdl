@@ -355,6 +355,7 @@ spawn-at-startup "~/.config/scripts/brightness-kbd.sh --inc 100"
 spawn-at-startup "asusctl" "aura" "static" "-c" "00ff99"
 spawn-at-startup "playerctld" "daemon"
 spawn-at-startup "~/.config/scripts/swayidle"
+spawn-at-startup "~/.config/scripts/updates-status.sh" "daemon"
 spawn-at-startup "gammastep"
 
 environment {
@@ -509,6 +510,17 @@ window-rule {
     default-column-width { fixed 1200; }
     default-window-height { fixed 900; }
     min-width 1000
+    min-height 800
+}
+
+// yay -Syu launched from waybar updates click — floating, wider.
+window-rule {
+    match title="waybar_updates"
+
+    open-floating true
+    default-column-width { fixed 1400; }
+    default-window-height { fixed 900; }
+    min-width 1200
     min-height 800
 }
 

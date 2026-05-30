@@ -101,6 +101,22 @@
   color: @base0B;
 }
 
+#custom-updates.none {
+  color: @base03;
+}
+
+#custom-updates.some {
+  color: @base0D;
+}
+
+#custom-updates.warning {
+  color: @base0A;
+}
+
+#custom-updates.critical {
+  color: @base08;
+}
+
 #bluetooth {
   color: @base0D;
 }

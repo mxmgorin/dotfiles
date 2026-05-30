@@ -17,6 +17,7 @@
   },
   "modules-center": ["niri/window"],
   "modules-right": [
+    "custom/updates",
     "group/connectivity",
     "bluetooth",
     "group/display",
@@ -270,6 +271,16 @@
     "interval": 5,
     "signal": 10,
     "return-type": "json"
+  },
+
+  "custom/updates": {
+    "exec": "$HOME/.config/scripts/updates-status.sh status",
+    "on-click": "alacritty --title waybar_updates -e sh -c 'yay -Syu; echo; read -p \"Press Enter to close...\" _; $HOME/.config/scripts/updates-status.sh refresh'",
+    "on-click-right": "$HOME/.config/scripts/updates-status.sh refresh",
+    "interval": 60,
+    "signal": 11,
+    "return-type": "json",
+    "tooltip": true
   },
 
   "wlr/taskbar": {
