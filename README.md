@@ -16,7 +16,6 @@ small shell scripts that fill the gaps Niri doesn't cover natively.
 | `config/wlogout/` | Power menu (logout / reboot / shutdown / lock / sleep) |
 | `config/fuzzel/` | App launcher and dmenu backend for menus |
 | `config/gammastep/` | Night light (warm screen at night) |
-| `config/swaylock/` | Fallback screen locker |
 | `config/scripts/` | Shell helpers used by Waybar/Niri — language indicator, brightness, audio source/sink pickers, power profile menu, screen rotation, gammastep toggle, etc. |
 | `config/alacritty/` | Terminal config (themes excluded — clone separately, see install) |
 | `config/fish/` | Shell config |
@@ -29,7 +28,7 @@ small shell scripts that fill the gaps Niri doesn't cover natively.
 Core Wayland stack:
 
 ```
-niri waybar fuzzel dunst wlogout swaylock swww swaybg
+niri waybar fuzzel dunst wlogout swww swaybg
 xwayland-satellite hyprlock swayidle gammastep
 ```
 
@@ -51,7 +50,7 @@ asusctl playerctl blueman pavucontrol nmtui
 Install in one go on Arch/CachyOS:
 
 ```sh
-sudo pacman -S niri waybar fuzzel dunst wlogout swaylock swww swaybg \
+sudo pacman -S niri waybar fuzzel dunst wlogout swww swaybg \
     xwayland-satellite hyprlock swayidle gammastep \
     brightnessctl ddcutil pamixer pulseaudio-utils power-profiles-daemon \
     libnotify wl-clipboard cliphist jq alacritty fish btop lazygit \
