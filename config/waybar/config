@@ -1,0 +1,321 @@
+{
+  "font": "JetBrainsMono Nerd Font 11",
+  "layer": "top",
+  //"height": 32,
+  "spacing": 4,
+  "margin-top": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "margin-left": 0,
+  "fixed-center": true,
+
+  "modules-left": ["custom/rotate", "niri/workspaces", "custom/separator", "group/apps"],
+
+  "group/apps": {
+    "orientation": "horizontal",
+    "modules": ["custom/apps", "wlr/taskbar"]
+  },
+  "modules-center": ["niri/window"],
+  "modules-right": [
+    "group/connectivity",
+    "bluetooth",
+    "group/display",
+    "group/audio",
+    "group/metrics",
+    "group/power",
+    "custom/language",
+    "clock",
+    "custom/exit"
+  ],
+
+  "group/connectivity": {
+    "orientation": "horizontal",
+    "modules": ["custom/vpn", "network"]
+  },
+
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": ["pulseaudio", "pulseaudio#microphone"]
+  },
+
+  "group/display": {
+    "orientation": "horizontal",
+    "modules": ["backlight", "custom/gammastep"]
+  },
+
+  "custom/rotate": {
+    "exec": "~/.config/scripts/screen-rotate.sh status",
+    "on-click": "~/.config/scripts/screen-rotate.sh toggle",
+    "interval": 2,
+    "signal": 9,
+    "return-type": "json"
+  },
+
+  "group/metrics": {
+    "orientation": "horizontal",
+    "modules": ["memory", "cpu", "temperature"]
+  },
+
+  "group/power": {
+    "orientation": "horizontal",
+    "modules": ["battery", "custom/powerprofile"]
+  },
+
+  "custom/separator_space": {
+    "format": "  ",
+    "tooltip": false,
+  },
+
+  "custom/separator": {
+    "format": " │ ",
+    "tooltip": false,
+  },
+
+  "niri/window": {
+    "format": "{title}",
+    "max-length": 40,
+    "separate-outputs": true,
+    "icon": true,
+    "icon-size": 14
+  },
+
+  "niri/workspaces": {
+    "format": "{}",
+    "format-icons": {
+      "_browser": "  ",
+      "_code": "  ",
+      "_terminal": "  ",
+      "_media": "  ",
+      "_chat": "  ",
+      "active": "  ",
+      "default": "  "
+    }
+  },
+
+  "tray": {
+    "spacing": 6
+  },
+
+  "clock": {
+    //"format": "{:%H:%M}",
+    "format": "{:%b %d  %H:%M}",
+    //"format-alt": "{:%b %d %Y}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "cpu": {
+    "interval": 5,
+    "states": {
+      "warning": 60,
+      "critical": 85
+    },
+    "format": " {usage}%",
+    "on-click": "$HOME/.config/scripts/niri-close-window.sh waybar_btop || alacritty --title waybar_btop -e btop"
+  },
+
+  "memory": {
+    "interval": 5,
+    "states": {
+      "warning": 70,
+      "critical": 90
+    },
+    "format": "  {}%",
+    "on-click": "$HOME/.config/scripts/niri-close-window.sh waybar_btop || alacritty --title waybar_btop -e btop",
+    "tooltip-format": "RAM: {used:0.1f}G/{total:0.1f}G\nSWAP: {swapUsed:0.1f}G/{swapAvail:0.1f}G",
+  },
+
+
+  "backlight": {
+    "format": "{icon} {percent: >3}%",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tooltip-format": "Backlight: {percent: >3}%",
+    "on-scroll-down": "$HOME/.config/scripts/change-brightness.sh -10",
+    "on-scroll-up": "$HOME/.config/scripts/change-brightness.sh +10"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 5,
+    "format": "{icon} {volume: >3}%",
+    "format-bluetooth": "{icon} {volume: >3}%",
+    "format-muted":"{icon} mute",
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "on-click-middle": "$HOME/.config/scripts/volume.sh --toggle",
+    "on-click": "$HOME/.config/scripts/switch-audio-sink-menu.sh",
+    "on-click-right": "pkill pavucontrol || pavucontrol -t 3",
+    "on-scroll-up": "$HOME/.config/scripts/volume.sh --inc",
+    "on-scroll-down": "$HOME/.config/scripts/volume.sh --dec",
+  },
+
+  "pulseaudio#microphone": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": " mute",
+	"on-click": "$HOME/.config/scripts/switch-audio-source-menu.sh",
+	"on-click-middle": "$HOME/.config/scripts/volume.sh --toggle-mic",
+	"on-click-right": "pkill pavucontrol || pavucontrol -t 4",
+	"on-scroll-up": "$HOME/.config/scripts/volume.sh --mic-inc",
+	"on-scroll-down": "$HOME/.config/scripts/volume.sh --mic-dec",
+	"tooltip-format": "{source_desc}",
+	"scroll-step": 5,
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity: >3}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "󱘖",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "",
+    "tooltip-format-wifi": "{essid}: {signalStrength}%",
+    "tooltip-format-ethernet": "{bandwidthDownBytes:>} {bandwidthUpBytes:>}  ",
+    "on-click": "$HOME/.config/scripts/niri-close-window.sh waybar_nmtui || alacritty --title waybar_nmtui -e nmtui ", //"footclient -T waybar_nmtui -e nmtui",
+  },
+
+  "bluetooth": {
+	"format": "󰂯",
+	"format-disabled": "󰂲", // an empty format will hide the module
+	"format-connected": "󰂱 {num_connections} con",
+	"tooltip-format": "{controller_alias}\t{controller_address}",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "pkill blueman-manager || blueman-manager",
+  },
+
+  "custom/language": {
+    "exec": "~/.config/scripts/niri-language.sh",
+    "on-click": "niri msg action switch-layout next",
+    "interval": 1,
+    "return-type": "json"
+  },
+
+  "temperature": {
+    "critical-threshold": 80,
+    "format-critical": " {temperatureC}°C",
+    "format": " {temperatureC}°C",
+  },
+
+  "custom/chatgpt": {
+    "format": " AI ",
+    "on-click": "brave --new-window https://chat.openai.com",
+    "tooltip-format": "AI Support"
+  },
+
+  "custom/youtube": {
+    "format": "  ",
+    "on-click": "brave --new-window https://youtube.com",
+    "tooltip-format": "AI Support"
+  },
+
+  "custom/calculator": {
+    "format": "",
+    "on-click": "qalculate-gtk",
+    "tooltip-format": "Open calculator"
+  },
+
+  "custom/exit": {
+    "format": " ",
+    "on-click": "wlogout",
+    "tooltip": false
+  },
+
+  "custom/vpn": {
+    "exec": "~/.config/scripts/vpn-status.sh",
+    "interval": 3,
+    "on-click": "$HOME/.config/scripts/niri-close-window.sh AmneziaVPN || /usr/local/sbin/AmneziaVPN",
+    "return-type": "json"
+  },
+
+  "custom/gammastep": {
+    "exec": "~/.config/scripts/gammastep-toggle.sh status",
+    "on-click": "~/.config/scripts/gammastep-toggle.sh toggle",
+    "interval": 2,
+    "signal": 8,
+    "return-type": "json"
+  },
+
+  "custom/powerprofile": {
+    "exec": "$HOME/.config/scripts/powerprofile-status.sh",
+    "on-click": "$HOME/.config/scripts/show-powerprofiles-menu.sh",
+    "interval": 5,
+    "signal": 10,
+    "return-type": "json"
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "Numix-Circle",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    //"sort-by-app-id": true,
+    "ignore-list": [
+    ],
+    "app_ids-mapping": {
+      "firefoxdeveloperedition": "firefox-developer-edition"
+    },
+    "rewrite": {
+        "Firefox Web Browser": "Firefox",
+        "Foot Server": "Terminal"
+    }
+  },
+
+  "custom/playerctl": {
+	"format": "<span>{}</span>",
+	"return-type": "json",
+	"max-length": 25,
+	"exec": "playerctl -a metadata --format '{\"text\": \"{{artist}}  {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+	"on-click-middle": "playerctl play-pause",
+	"on-click": "playerctl previous",
+	"on-click-right": "playerctl next",
+	"scroll-step": 5.0,
+	"on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+	"on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+	"smooth-scrolling-threshold": 1,
+  },
+
+  "custom/browser": {
+	"format": " ",
+	"on-click": "xdg-open https://",
+	"tooltip": true,
+	"tooltip-format": "Launch Browser",
+  },
+
+  "custom/apps": {
+	"format": " 󰀻 ",
+	"on-click": "pkill fuzzel || fuzzel",
+	"tooltip": true,
+	"tooltip-format": "Apps drawer",
+  },
+}

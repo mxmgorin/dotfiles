@@ -1,0 +1,10 @@
+# Excluded: large vendored theme repo, clone separately when needed
+# git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+config/alacritty/themes/
+
+# Caches, logs, runtime state that shouldn't be tracked
+*.log
+*.cache
+*.sock
+*-history*
+fish_history

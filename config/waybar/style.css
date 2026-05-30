@@ -1,0 +1,270 @@
+@define-color base00 #181818;
+@define-color base01 rgba(44, 47, 56, 0.75);
+@define-color base02 #3b3e47;
+@define-color base03 #585858;
+@define-color base04 #b8b8b8;
+@define-color base05 #d8d8d8;
+@define-color base06 #e8e8e8;
+@define-color base07 #f8f8f8;
+@define-color base08 #ab4642;
+@define-color base09 #dc9656;
+@define-color base0A #f7ca88;
+@define-color base0B #a1b56c;
+@define-color base0C #86c1b9;
+@define-color base0D #7cafc2;
+@define-color base0E #ba8baf;
+@define-color base0F #a16946;
+
+* {
+  transition: none;
+  box-shadow: none;
+  font-family: "FiraCode Nerd Font";
+  /* font-family: "JetBrains Nerd Font"; */
+  /* font-family: Roboto, Helvetica, Arial, sans-serif; */
+  font-size: 17px;
+}
+
+#waybar {
+  color: @base04;
+  background: @base01;
+}
+
+#workspaces {
+  margin: 0 4px;
+}
+
+#workspaces button {
+  margin: 4px 0;
+  padding: 0 4px;
+  color: @base05;
+}
+
+#workspaces button.visible {
+}
+
+#workspaces button.active {
+  border-radius: 4px;
+  background-color: @base02;
+}
+
+#workspaces button.urgent {
+  color: rgba(238, 46, 36, 1);
+}
+
+#tray {
+  margin: 4px 4px 4px 4px;
+  border-radius: 4px;
+  background-color: @base02;
+}
+
+#tray * {
+  padding: 0 6px;
+  border-left: 1px solid @base00;
+}
+
+#tray *:first-child {
+  border-left: none;
+}
+
+/* Typography + inner padding apply to every module (incl. grouped ones). */
+#custom-vpn, #custom-gammastep, #custom-language, #custom-rotate, #mode, #battery, #cpu, #memory, #network, #pulseaudio, #idle_inhibitor, #backlight, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #temperature, #language, #custom-powerprofile, #bluetooth, #power {
+  padding: 0 6px;
+  min-width: 20px;
+  font-family: "Symbols Nerd Font";
+  font-size: 14px;
+}
+
+/* Pill background — only for ungrouped modules. */
+#custom-language, #custom-rotate, #mode, #idle_inhibitor, #custom-storage, #custom-updates, #custom-weather, #custom-mail, #clock, #language, #bluetooth {
+  margin: 4px 2px;
+  background-color: @base02;
+  border-radius: 4px;
+}
+
+/* Group pill: wraps the whole group as one. */
+#metrics,
+#power,
+#connectivity,
+#audio,
+#display,
+#apps {
+  margin: 4px 2px;
+  background-color: @base02;
+  border-radius: 4px;
+}
+
+#custom-vpn.disconnected {
+  color: @base0F;
+}
+
+#custom-vpn.connected {
+  color: @base0B;
+}
+
+#bluetooth {
+  color: @base0D;
+}
+
+#bluetooth.connected {
+  color: @base0C;
+}
+
+#bluetooth.disabled,
+#bluetooth.off {
+  color: @base03;
+}
+
+#network {
+  color: @base0D;
+}
+
+#network.ethernet {
+  color: @base0B;
+}
+
+#network.disconnected,
+#network.disabled {
+  color: @base08;
+}
+
+#custom-gammastep {
+  font-size: 10px;
+}
+
+#custom-language {
+  font-size: 10px;
+  padding-top: 2px;
+}
+
+#custom-rotate {
+  font-size: 10px;
+  padding-top: 2px;
+}
+
+
+#custom-separator {
+  color: @base03;
+  font-family: "Symbols Nerd Font";
+}
+
+#taskbar {
+  padding: 0;
+  background-color: transparent;
+}
+
+#taskbar button {
+  margin: 0;
+  padding: 0 4px;
+  background-color: transparent;
+  border-radius: 0;
+  min-height: 0;
+}
+
+#custom-gammastep.on {
+  color: @base0A;
+}
+
+#custom-gammastep.off {
+  color: @base03;
+}
+
+#custom-powerprofile.performance {
+  color: @base08;
+}
+
+#custom-powerprofile.balanced {
+  color: @base0A;
+}
+
+#custom-powerprofile.power-saver {
+  color: @base0B;
+}
+
+#language.us {
+  color: @base0D;
+}
+
+#language.ru {
+  color: @base08;
+}
+
+#cpu, #memory {
+  color: @base0B;
+}
+
+#cpu.warning, #memory.warning {
+  color: @base0A;
+}
+
+#cpu.critical, #memory.critical {
+  color: @base08;
+}
+
+#temperature {
+  color: @base0B;
+}
+
+#temperature.critical {
+  color: @base08;
+}
+
+#battery {
+  color: @base0B;
+}
+
+#battery.warning {
+  color: @base0A;
+}
+
+#battery.critical {
+  color: @base08;
+}
+
+#battery.charging,
+#battery.plugged {
+  color: @base0D;
+}
+
+#pulseaudio,
+#pulseaudio\.microphone {
+  color: @base0C;
+}
+
+/* Speaker mute → red; mic mute → orange. */
+#pulseaudio:not(.microphone).muted {
+  color: @base08;
+}
+
+#pulseaudio.microphone.source-muted {
+  color: @base09;
+}
+
+#backlight {
+  color: @base0A;
+}
+
+#pulseaudio.bluetooth {
+  color: @base0C;
+}
+
+#clock {
+  margin-left: 0px;
+  margin-right: 4px;
+  background-color: transparent;
+}
+
+#temperature.critical {
+  color: @base0F;
+}
+
+#window {
+  font-size: 0.9em;
+	font-weight: 400;
+	font-family: sans-serif;
+}
+
+#language {
+	font-size: 0.9em;
+	font-weight: 500;
+	letter-spacing: -1px;
+}

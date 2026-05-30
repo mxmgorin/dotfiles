@@ -1,0 +1,4 @@
+#!/bin/sh
+exec swayidle -w \
+	timeout 1800 'niri msg action power-off-monitors' \
+	before-sleep 'hyprlock'
