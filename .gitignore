@@ -8,3 +8,5 @@ config/alacritty/themes/
 *.sock
 *-history*
 fish_history
+
+.idea/
