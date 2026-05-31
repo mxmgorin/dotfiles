@@ -1,0 +1,9 @@
+# Force English UI (day/month names) regardless of system LANG.
+force_lang = en_US.utf8
+
+# English-style date/time labels above the calendar.
+clock_format = %A, %B %d %Y
+date_format = %A, %B %d %Y
+
+mark_today = 1
+mainwindow_keep_above = 1

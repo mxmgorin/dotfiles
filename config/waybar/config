@@ -101,7 +101,8 @@
     //"format": "{:%H:%M}",
     "format": "{:%b %d  %H:%M}",
     //"format-alt": "{:%b %d %Y}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip": false,
+    "on-click": "pkill gsimplecal || env LC_ALL=en_US.utf8 GDK_DPI_SCALE=1.5 gsimplecal"
   },
 
   "cpu": {

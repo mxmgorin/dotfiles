@@ -616,6 +616,14 @@ window-rule {
     default-floating-position x=0 y=0 relative-to="top-right"
 }
 
+// gsimplecal calendar popup — anchor near the clock (top-right, under the bar).
+window-rule {
+    match app-id="gsimplecal"
+
+    open-floating true
+    default-floating-position x=10 y=10 relative-to="top-right"
+}
+
 /-window-rule { // for pop-ups
     match title="$^"
     match title=" "
