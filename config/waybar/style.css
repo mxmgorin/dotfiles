@@ -27,6 +27,7 @@
 #waybar {
   color: @base04;
   background: @base01;
+  border-radius: 10px;
 }
 
 #workspaces {
