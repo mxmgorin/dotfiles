@@ -275,7 +275,8 @@
 
   "custom/updates": {
     "exec": "$HOME/.config/scripts/updates-status.sh status",
-    "on-click": "alacritty --title waybar_updates -e sh -c 'yay -Syu; echo; read -p \"Press Enter to close...\" _; $HOME/.config/scripts/updates-status.sh refresh'",
+    "on-click": "$HOME/.config/scripts/updates-status.sh refresh",
+    "on-click-middle": "alacritty --title waybar_updates -e sh -c 'yay -Syu; echo; read -p \"Press Enter to close...\" _; $HOME/.config/scripts/updates-status.sh refresh'",
     "on-click-right": "$HOME/.config/scripts/updates-status.sh refresh",
     "interval": 60,
     "signal": 11,

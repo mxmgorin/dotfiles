@@ -117,6 +117,10 @@
   color: @base08;
 }
 
+#custom-updates.checking {
+  color: @base0C;
+}
+
 #bluetooth {
   color: @base0D;
 }
