@@ -16,6 +16,7 @@ small shell scripts that fill the gaps Niri doesn't cover natively.
 | `config/wlogout/` | Power menu (logout / reboot / shutdown / lock / sleep) |
 | `config/fuzzel/` | App launcher and dmenu backend for menus |
 | `config/gammastep/` | Night light (warm screen at night) |
+| `config/gsimplecal/` | Calendar popup opened by clicking the Waybar clock |
 | `config/scripts/` | Shell helpers used by Waybar/Niri — language indicator, brightness, audio source/sink pickers, power profile menu, screen rotation, gammastep toggle, etc. |
 | `config/alacritty/` | Terminal config (themes excluded — clone separately, see install) |
 | `config/fish/` | Shell config |
@@ -44,7 +45,7 @@ Optional but referenced:
 
 ```
 alacritty fish btop lazygit micro helix zed-mono zellij
-asusctl playerctl blueman pavucontrol nmtui
+asusctl playerctl blueman pavucontrol nmtui gsimplecal
 ```
 
 Install in one go on Arch/CachyOS:
@@ -115,6 +116,7 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 
 - **Waybar grouped pills**: connectivity (vpn+wifi), display (brightness+gammastep), audio (sink+mic), metrics (mem+cpu+temp), power (battery+profile) — each as a single visual block instead of separate icons.
 - **Click-to-menu**: clicking the audio/microphone/power-profile icons opens a fuzzel selector showing human-readable device descriptions, not cryptic ALSA names.
+- **Clock → calendar**: clicking the clock toggles a `gsimplecal` popup, anchored floating near the clock by a Niri window rule, forced to English (`LC_ALL`) and enlarged via `GDK_DPI_SCALE`.
 - **Coloured indicators**: VPN green when connected, CPU/RAM yellow→red on high load, battery green/yellow/red by charge, power-profile colour-coded.
 - **Fast brightness**: `change-brightness.sh` runs the external monitor's DDC/CI write in background and uses relative `setvcp ± N` to skip the slow read — keypress latency dropped from ~1 s to ~50 ms.
 - **One-replacement notifications**: brightness, volume, audio device switch, and power profile all use `x-canonical-private-synchronous` hints so repeat key presses replace the existing toast instead of stacking.
