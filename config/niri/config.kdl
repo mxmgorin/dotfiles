@@ -344,11 +344,12 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swww-daemon"
 //spawn-at-startup "swww" "img" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png"
 spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png"
-spawn-at-startup "waybar"
+spawn-at-startup "~/.config/scripts/start-waybar.sh"
 // spawn-at-startup "foot" "--server"
 spawn-at-startup "powerprofilesctl" "set" "balanced"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"
 spawn-at-startup "alacritty"
+spawn-at-startup "zen-browser"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "~/.config/scripts/brightness-kbd.sh --inc 100"
@@ -600,6 +601,7 @@ window-rule {
     //match app-id=r#"jetbrains-rustrover"#
     match app-id=r#"zen"#
 
+    open-on-workspace "media"
     default-column-width { proportion 1.0; }
 }
 
