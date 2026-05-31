@@ -1,6 +1,11 @@
 #!/bin/bash
 # Pick an audio sink (output) by human-readable description via fuzzel.
 
+# Toggle: if a fuzzel menu is already open, close it and exit.
+if pkill -x fuzzel; then
+    exit 0
+fi
+
 # Build name <-> description mapping from `pactl list sinks`.
 declare -A desc_to_name
 declare -A name_to_desc

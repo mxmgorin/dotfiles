@@ -2,6 +2,11 @@
 # Pick an audio source (microphone) by human-readable description via fuzzel.
 # Monitor sources (.monitor) are excluded — they mirror outputs, not real mics.
 
+# Toggle: if a fuzzel menu is already open, close it and exit.
+if pkill -x fuzzel; then
+    exit 0
+fi
+
 declare -A desc_to_name
 current_name=""
 current_desc=""
