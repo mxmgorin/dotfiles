@@ -63,30 +63,57 @@ notify_user() {
     fi
 }
 
+# --- Управление громкостью сразу у ВСЕХ sink'ов ---------------------------
+# Раньше pamixer крутил только дефолтный sink (а им стоит loopback snd_aloop),
+# поэтому менялся «не тот» выход. Теперь проходим по всем sink'ам.
+
+all_sink_ids() {
+    pactl list short sinks | awk '{print $1}'
+}
+
+# Громкость sink'а в процентах (первое число с %).
+sink_volume_pct() {
+    pactl get-sink-volume "$1" 2>/dev/null | grep -oP '\d+(?=%)' | head -1
+}
+
 inc_volume() {
-    if [ "$(pamixer --get-mute)" == "true" ]; then
-        toggle_mute
-    else
-        pamixer -i 5 --allow-boost --set-limit 150 && notify_user
-    fi
+    for s in $(all_sink_ids); do
+        # снимаем mute и поднимаем, не превышая 150% (boost-лимит)
+        pactl set-sink-mute "$s" 0 2>/dev/null
+        cur=$(sink_volume_pct "$s")
+        if [ "${cur:-0}" -lt 150 ]; then
+            pactl set-sink-volume "$s" +5% 2>/dev/null
+        fi
+    done
+    notify_user
 }
 
 dec_volume() {
-    if [ "$(pamixer --get-mute)" == "true" ]; then
-        toggle_mute
-    else
-        pamixer -d 5 && notify_user
-    fi
+    for s in $(all_sink_ids); do
+        pactl set-sink-volume "$s" -5% 2>/dev/null
+    done
+    notify_user
 }
 
 toggle_mute() {
     desc=$(get_default_sink_description)
 
-	if [ "$(pamixer --get-mute)" == "false" ]; then
-		pamixer -m && notify-send -a "system-script" -e  -u low -i "$iDIR/volume-mute.png" "Volume Level:" " Switched OFF ($desc)"
-	elif [ "$(pamixer --get-mute)" == "true" ]; then
-		pamixer -u && notify-send -a "system-script" -e  -u low -i "$(get_icon)" " Volume Level:" " Switched ON ($desc)"
-	fi
+    # Целевое состояние определяем по дефолтному sink, применяем ко всем.
+    if [ "$(pamixer --get-mute)" == "true" ]; then
+        new=0   # был muted → включаем всё
+    else
+        new=1   # был активен → глушим всё
+    fi
+
+    for s in $(all_sink_ids); do
+        pactl set-sink-mute "$s" "$new" 2>/dev/null
+    done
+
+    if [ "$new" == "1" ]; then
+        notify-send -a "system-script" -e -u low -i "$iDIR/volume-mute.png" "Volume Level:" " Switched OFF (all sinks)"
+    else
+        notify-send -a "system-script" -e -u low -i "$(get_icon)" " Volume Level:" " Switched ON (all sinks)"
+    fi
 }
 
 toggle_mic() {

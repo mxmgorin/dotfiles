@@ -24,6 +24,22 @@
   font-size: 17px;
 }
 
+/* Тема Breeze (GTK) рисует цветную рамку на модуле по его СОСТОЯНИЮ
+   (warning→оранж., critical→красн., charging→син. и т.д.). Сбрасываем рамку
+   по ГОЛОМУ #id — селектор по id (1,0,0) перебивает любое правило темы
+   (label.warning = 0,1,1) и накрывает СРАЗУ ВСЕ состояния модуля.
+   Цвет состояния задаём только текстом (color ниже). */
+#battery, #cpu, #memory, #temperature,
+#network, #pulseaudio, #custom-updates,
+#backlight, #custom-powerprofile, #temperature.critical {
+  border: none;
+  border-width: 0;
+  border-image: none;
+  outline: none;
+  box-shadow: none;
+  background-image: none;
+}
+
 #waybar {
   color: @base04;
   background: @base01;
@@ -215,10 +231,12 @@
 
 #cpu.warning, #memory.warning {
   color: @base0A;
+  background-color: transparent;
 }
 
 #cpu.critical, #memory.critical {
   color: @base08;
+  background-color: transparent;
 }
 
 #temperature {
@@ -227,6 +245,7 @@
 
 #temperature.critical {
   color: @base08;
+  background-color: transparent;
 }
 
 #battery {
@@ -235,15 +254,18 @@
 
 #battery.warning {
   color: @base0A;
+  background-color: transparent;
 }
 
 #battery.critical {
   color: @base08;
+  background-color: transparent;
 }
 
 #battery.charging,
 #battery.plugged {
   color: @base0D;
+  background-color: transparent;
 }
 
 #pulseaudio,

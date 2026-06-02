@@ -28,6 +28,9 @@ emit() {
 
 case "${1:-status}" in
     refresh)
+        # Show "checking" state in waybar while the slow commands run.
+        printf 'checking\n' > "$CACHE"
+        pkill -RTMIN+11 waybar 2>/dev/null
         repo=$(checkupdates 2>/dev/null | wc -l)
         aur=$(yay -Qua 2>/dev/null | wc -l)
         printf '%d %d\n' "$repo" "$aur" > "$CACHE"
@@ -43,9 +46,13 @@ case "${1:-status}" in
     status|*)
         if [ -r "$CACHE" ]; then
             read -r repo aur < "$CACHE"
-            emit "${repo:-0}" "${aur:-0}"
+            if [ "$repo" = "checking" ]; then
+                printf '{"text":"󰦖","tooltip":"Checking for updates...","class":"checking"}\n'
+            else
+                emit "${repo:-0}" "${aur:-0}"
+            fi
         else
-            printf '{"text":"…","tooltip":"Updates: checking...","class":"checking"}\n'
+            printf '{"text":"󰦖","tooltip":"Checking for updates...","class":"checking"}\n'
         fi
         ;;
 esac
