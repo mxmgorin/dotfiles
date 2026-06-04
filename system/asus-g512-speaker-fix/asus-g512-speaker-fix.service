@@ -1,0 +1,11 @@
+[Unit]
+Description=ASUS ROG Strix G512 internal speaker fix (Realtek ALC294 COEF)
+After=sound.target
+Wants=sound.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/asus-g512-speaker-fix.sh
+
+[Install]
+WantedBy=multi-user.target
