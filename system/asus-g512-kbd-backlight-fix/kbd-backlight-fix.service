@@ -1,0 +1,17 @@
+[Unit]
+Description=Reapply ASUS keyboard aura effect after login (fixes backlight off at boot until ROG/refresh)
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+# Wait until the keyboard USB/hidraw is fully ready, then force asusd to
+# re-send the current aura mode to the keyboard (next->prev returns to the
+# same mode). Plain `leds set` only changes brightness and does NOT relight it.
+ExecStartPre=/usr/bin/sleep 4
+ExecStart=/usr/bin/asusctl aura effect --next-mode
+ExecStartPost=/usr/bin/asusctl aura effect --prev-mode
+ExecStartPost=/usr/bin/asusctl leds set high
+
+[Install]
+WantedBy=graphical-session.target
