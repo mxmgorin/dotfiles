@@ -344,7 +344,11 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "swww-daemon"
 //spawn-at-startup "swww" "img" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png"
 spawn-at-startup "swaybg" "-i" "/usr/share/wallpapers/cachyos-wallpapers/Skyscraper.png"
-spawn-at-startup "~/.config/scripts/start-waybar.sh"
+// waybar is launched via the systemd waybar.service unit (Restart=on-failure cures the startup race),
+// but NOT via `enable` — otherwise it would also start under Plasma. Only niri starts it, only here.
+// The old script got stuck in the startup race and never restarted:
+// spawn-at-startup "~/.config/scripts/start-waybar.sh"
+spawn-at-startup "systemctl" "--user" "start" "waybar.service"
 // spawn-at-startup "foot" "--server"
 spawn-at-startup "powerprofilesctl" "set" "balanced"
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "main"

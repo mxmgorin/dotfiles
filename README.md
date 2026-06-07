@@ -11,6 +11,7 @@ small shell scripts that fill the gaps Niri doesn't cover natively.
 | --- | --- |
 | `config/niri/` | Compositor config — input, keybinds, window rules, output layout |
 | `config/waybar/` | Status bar — grouped pills, custom modules, click menus |
+| `config/systemd/user/` | User-unit drop-ins (e.g. waybar restart-on-failure) |
 | `config/hypr/` | `hyprlock.conf` (lock screen) and `hypridle.conf` (legacy, unused) |
 | `config/dunst/` | Notification daemon styling |
 | `config/wlogout/` | Power menu (logout / reboot / shutdown / lock / sleep) |
