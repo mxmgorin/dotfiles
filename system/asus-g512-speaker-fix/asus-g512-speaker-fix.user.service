@@ -1,0 +1,18 @@
+[Unit]
+Description=Re-apply ASUS G512 ALC294 speaker COEF after WirePlumber inits the codec
+Documentation=https://github.com/mxmgorin/asus-g512-speaker-fix
+# WirePlumber re-initializes the HDA codec on session start, wiping the COEF the
+# boot-time system service applied. Re-trigger it once the session is up.
+After=wireplumber.service
+Wants=wireplumber.service
+
+[Service]
+Type=oneshot
+# Give WirePlumber a moment to finish configuring the card before we re-apply.
+ExecStartPre=/usr/bin/sleep 3
+# hda-verb needs CAP_SYS_RAWIO, so we re-run the privileged system oneshot.
+# Allowed without a password via /etc/sudoers.d/asus-g512-speaker-fix.
+ExecStart=/usr/bin/sudo -n /usr/bin/systemctl start asus-g512-speaker-fix.service
+
+[Install]
+WantedBy=default.target

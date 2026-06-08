@@ -1,0 +1,4 @@
+# Allow mxmgo to re-trigger the ALC294 speaker COEF fix (oneshot) without a password.
+# Install to /etc/sudoers.d/asus-g512-speaker-fix with mode 0440, owned by root.
+# Used by the per-user systemd unit asus-g512-speaker-fix.service (After=wireplumber).
+mxmgo ALL=(root) NOPASSWD: /usr/bin/systemctl start asus-g512-speaker-fix.service
